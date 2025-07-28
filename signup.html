@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueServe - Signup</title>
+  <link rel="stylesheet" href="login.css"> 
+</head>
+<body>
+
+<header style="background-color:#007bff; padding:10px 20px;">
+  <div class="logo" style="color:white; font-size:24px; font-weight:bold; display:inline-block;">
+    BlueServe
+  </div>
+  <nav style="float:right;">
+    <ul style="list-style:none; margin:0; padding:0;">
+      <li style="display:inline-block; margin:0 15px;"><a href="index.html" style="color:white; text-decoration:none;">Home</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="call.html" style="color:white; text-decoration:none;">Call a Professional</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="join.html" style="color:white; text-decoration:none;">Join as a Professional</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="about.html" style="color:white; text-decoration:none;">About</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="services.html" style="color:white; text-decoration:none;">Services</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="contact.html" style="color:white; text-decoration:none;">Contact</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="login.html" style="color:yellow; text-decoration:none;">Sign In</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- ✅ Signup Section -->
+  <div class="login-container">
+    <h2>Create Your BlueServe Account</h2>
+    <form id="signupForm">
+      
+      <!-- Full Name -->
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter your full name" required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+      </div>
+
+      <button type="submit" class="login-btn">Create Account</button>
+
+      <p class="links">
+        Already have an account? <a href="login.html">Login</a>
+      </p>
+    </form>
+  </div>
+
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('✅ Signup successful! Now login.');
+            window.location.href = "login.html";
+        } else {
+            alert('❌ ' + data.message);
+        }
+    } catch (err) {
+        console.error(err);
+        alert('⚠️ Server error, try again later.');
+    }
+});
+</script>
+</body>
+</html>

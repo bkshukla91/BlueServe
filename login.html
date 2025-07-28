@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueServe - Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <header style="background-color:#007bff; padding:10px 20px;">
+  <div class="logo" style="color:white; font-size:24px; font-weight:bold; display:inline-block;">
+    BlueServe
+  </div>
+  <nav style="float:right;">
+    <ul style="list-style:none; margin:0; padding:0;">
+      <li style="display:inline-block; margin:0 15px;"><a href="index.html" style="color:white; text-decoration:none;">Home</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="call.html" style="color:white; text-decoration:none;">Call a Professional</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="join.html" style="color:white; text-decoration:none;">Join as a Professional</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="about.html" style="color:white; text-decoration:none;">About</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="services.html" style="color:white; text-decoration:none;">Services</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="contact.html" style="color:white; text-decoration:none;">Contact</a></li>
+      <li style="display:inline-block; margin:0 15px;"><a href="login.html" style="color:yellow; text-decoration:none;">Sign In</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- ✅ Login Section -->
+  <div class="login-container">
+    <h2>Login to BlueServe</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <div class="create-account">
+  <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
+</div>
+        <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle login logic here
+        alert('Login functionality is not implemented yet.');
+        });
+    </script>
