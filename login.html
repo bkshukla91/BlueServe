@@ -9,23 +9,19 @@
 <body>
 
   <!-- ✅ Navbar -->
-  <header style="background-color:#007bff; padding:10px 20px;">
-  <div class="logo" style="color:white; font-size:24px; font-weight:bold; display:inline-block;">
-    BlueServe
-  </div>
-  <nav style="float:right;">
-    <ul style="list-style:none; margin:0; padding:0;">
-      <li style="display:inline-block; margin:0 15px;"><a href="index.html" style="color:white; text-decoration:none;">Home</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="call.html" style="color:white; text-decoration:none;">Call a Professional</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="join.html" style="color:white; text-decoration:none;">Join as a Professional</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="about.html" style="color:white; text-decoration:none;">About</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="services.html" style="color:white; text-decoration:none;">Services</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="contact.html" style="color:white; text-decoration:none;">Contact</a></li>
-      <li style="display:inline-block; margin:0 15px;"><a href="login.html" style="color:yellow; text-decoration:none;">Sign In</a></li>
-    </ul>
-  </nav>
-</header>
-
+  <header class="navbar">
+    <div class="logo">BlueServe</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="call.html">Call a Professional</a></li>
+        <li><a href="join.html">Join as a Professional</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- ✅ Login Section -->
   <div class="login-container">
@@ -40,17 +36,38 @@
         <label>Password</label>
         <input type="password" id="password" placeholder="Enter your password" required>
       </div>
-      <div class="create-account">
-  <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
-</div>
-        <button type="submit" class="login-btn">Login</button>
-        </form>
-    </div>
-    
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle login logic here
-        alert('Login functionality is not implemented yet.');
-        });
-    </script>
+
+      <button type="submit" class="login-btn">Login</button>
+
+      <p class="links">
+  <a href="#">Forgot Password?</a> | 
+  <a href="signup.html">Create Account</a>  
+</p>
+
+    </form>
+  </div>
+
+</body>
+</html>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    // ✅ LocalStorage से users load करें
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // ✅ User check करें
+    const user = users.find(user => user.email === email && user.password === password);
+
+    if(user) {
+        alert(`✅ Welcome ${user.fullname}! You have successfully logged in.`);
+        window.location.href = "index.html";
+    } else {
+        alert("❌ Invalid Email or Password. Please try again!");
+    }
+});
+</script>
